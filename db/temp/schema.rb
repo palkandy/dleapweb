@@ -43,8 +43,6 @@ ActiveRecord::Schema.define(:version => 20130124142748) do
     t.boolean  "admin",           :default => false
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "address"
-    t.boolean  "gmaps"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

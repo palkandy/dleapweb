@@ -21,7 +21,6 @@ def make_users
     User.create!(name:     name,
                  email:    email,
                  password: password,
-		 address: "KKR Golden enclave,Attapur,hyderabad,india",
                  password_confirmation: password)
   end
 end

@@ -11,7 +11,7 @@ def make_users
   admin = User.create!(name:     "Example User",
                        email:    "example@railstutorial.org",
                        password: "foobar",
-		       address: "KKR Golden enclave,Attapur,hyderabad,india",
+                       password_digest: "foobar",
                        password_confirmation: "foobar")
   admin.toggle!(:admin)
   99.times do |n|
@@ -21,7 +21,7 @@ def make_users
     User.create!(name:     name,
                  email:    email,
                  password: password,
-		 address: "KKR Golden enclave,Attapur,hyderabad,india",
+                 password_digest: password,
                  password_confirmation: password)
   end
 end

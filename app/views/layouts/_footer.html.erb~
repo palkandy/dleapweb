@@ -9,6 +9,5 @@
       <li><%= link_to "Contact", '#' %></li>
       <li><a href="http://news.railstutorial.org/">News</a></li>
     </ul>
-    <%= yield :scripts %> 
   </nav>
 </footer>
