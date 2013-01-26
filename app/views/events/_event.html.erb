@@ -1,0 +1,15 @@
+<li>
+  <span class="content"><%= event.details %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(event.created_at) %> ago.
+  </span>
+<span class="timestamp">
+    Start  <%= distance_of_time_in_words_to_now(event.created_at) %>   at  <%= event.address %>.
+  </span>
+
+  <% if current_user?(event.user) %>
+    <%= link_to "delete",event, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: event.details %>
+  <% end %>
+</li>

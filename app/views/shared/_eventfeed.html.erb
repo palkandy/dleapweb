@@ -1,0 +1,6 @@
+<% if @eventfeed_items.any? %>
+  <ol class="events">
+    <%= render partial: 'shared/eventfeed_item', collection: @eventfeed_items %>
+  </ol>
+  <%= will_paginate @eventfeed_items %>
+<% end %>
