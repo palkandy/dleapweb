@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124142748) do
+ActiveRecord::Schema.define(:version => 20130125130721) do
+
+  create_table "eventfollows", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "eventfollows", ["event_id", "follower_id"], :name => "index_eventfollows_on_event_id_and_follower_id", :unique => true
+  add_index "eventfollows", ["event_id"], :name => "index_eventfollows_on_event_id"
+  add_index "eventfollows", ["follower_id"], :name => "index_eventfollows_on_follower_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "details"
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

@@ -10,15 +10,32 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :address
   has_secure_password
   has_many :microposts, dependent: :destroy
+  has_many :events, dependent: :destroy
+
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+
+
+  has_many :eventfollows, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_events, through: :eventfollows, source: :event
+  
+  
+  #These two lines should go in the events table ...
+  
+  #has_many :reverse_eventfollows, foreign_key: "followed_id",
+#	                                     class_name:  "Relationship",
+					           #                            dependent:   :destroy
+ #   has_many :followers, through: :reverse_relationships, source: :follower
+
+
+
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -40,7 +57,8 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Micropost.from_users_followed_by(self)
+    @posts = Micropost.from_users_followed_by(self)
+# TBD: Take care of events here ....    @events =
   end
 
   def following?(other_user)
@@ -55,6 +73,18 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+
+   def eventfollowing?(event)
+	   eventfollows.find_by_follower_id(self.id)
+   end
+
+    def eventfollow!(event)
+	eventfollows.create!( event.id)
+    end
+
+    def eventunfollow!(event)
+      eventfollows.find_by_event_id(event.id).destroy
+    end
   private
 
     def create_remember_token

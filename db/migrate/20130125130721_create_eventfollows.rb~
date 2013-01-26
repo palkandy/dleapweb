@@ -1,0 +1,10 @@
+class CreateEventfollows < ActiveRecord::Migration
+  def change
+    create_table :eventfollows do |t|
+      t.integer :event_id
+      t.integer :follower_id
+
+      t.timestamps
+    end
+  end
+end
