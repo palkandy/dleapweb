@@ -1,4 +1,5 @@
 <% if signed_in? %>
+<%= gmaps4rails(@json) %>
   <div class="row">
     <aside class="span4">
       <section>
@@ -10,8 +11,20 @@
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
+      
     </aside>
+   
   </div>  
+  <div class="span8">
+   <section>
+        <%= render 'shared/event_form' %>
+   </section>
+  </div>
+  <div class="span8">
+      <h3>Event Feed</h3>
+      <%= render 'shared/eventfeed' %>
+    </div>
+  </div>
   <div class="span8">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>

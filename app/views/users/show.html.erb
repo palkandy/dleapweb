@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+<%= gmaps4rails(@json) %>
 <div class="row">
   <aside class="span4">
     <section>
@@ -7,11 +8,11 @@
         <%= @user.name %>
       </h1>
     </section>
-    <section>
-    <%= gmaps4rails(@json) %>
-      <%= render 'shared/stats' %>
+        <section>
+         <%= render 'shared/stats' %>
     </section>
   </aside>
+  <aside>
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
@@ -20,6 +21,17 @@
         <%= render @microposts %>
       </ol>
       <%= will_paginate @microposts %>
+    <% end %>
+  </div>
+  </aside>
+  <div class="span8">
+   
+    <% if @user.events.any? %>
+      <h3>Events (<%= @user.events.count %>)</h3>
+      <ol class="events">
+        <%= render @events %>
+      </ol>
+      <%= will_paginate @events %>
     <% end %>
   </div>
 </div>

@@ -58,9 +58,13 @@ class User < ActiveRecord::Base
 
   def feed
     @posts = Micropost.from_users_followed_by(self)
-# TBD: Take care of events here ....    @events =
+
   end
 
+  def eventsfeed
+    @eventposts = Event.from_users_followed_by(self)
+    # TBD: Apply better algo here ...
+  end
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end
@@ -84,6 +88,14 @@ class User < ActiveRecord::Base
 
     def eventunfollow!(event)
       eventfollows.find_by_event_id(event.id).destroy
+    end
+    
+    def gmaps4rails_marker_picture
+    {
+    "picture" => "/assets/rails.png", # image_path column has to contain something like '/assets/my_pic.jpg'.
+    "width" => 32, #beware to resize your pictures properly
+    "height" => 32 #beware to resize your pictures properly
+    }
     end
   private
 

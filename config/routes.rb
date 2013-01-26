@@ -7,6 +7,8 @@ WebServer::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
+  resources :events, only: [:create, :destroy]
+  resources :eventfollows, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
   match '/signup',  to: 'users#new'

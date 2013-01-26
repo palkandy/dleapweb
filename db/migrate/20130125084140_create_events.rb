@@ -8,6 +8,7 @@ class CreateEvents < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.boolean :gmaps
+      t.integer :user_id
 
       t.timestamps
     end

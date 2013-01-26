@@ -6,7 +6,9 @@ class UsersController < ApplicationController
  
   def index
     @users = User.paginate(page: params[:page])
-    @json = @users.to_gmaps4rails
+    @events = Event.paginate(page: params[:page])
+    @json = JSON.parse(@events.to_gmaps4rails) + JSON.parse(@users.to_gmaps4rails)
+    @json = @json.to_json
   end
 
   def new
@@ -20,8 +22,13 @@ class UsersController < ApplicationController
  
   def show
     @user = User.find(params[:id])
-    @json = @user.to_gmaps4rails
+     
     @microposts = @user.microposts.paginate(page: params[:page])
+    @events = @user.events.paginate(page: params[:page])
+#    @json = [@events , @user].to_gmaps4rails
+    @json = JSON.parse(@events.to_gmaps4rails) + JSON.parse(@user.to_gmaps4rails)
+    @json = @json.to_json
+        
   end
 
 
