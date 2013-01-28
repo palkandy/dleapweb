@@ -79,11 +79,11 @@ class User < ActiveRecord::Base
 
 
    def eventfollowing?(event)
-	   eventfollows.find_by_follower_id(self.id)
+	   eventfollows.find_by_event_id(event.id)
    end
 
     def eventfollow!(event)
-	eventfollows.create!( event.id)
+	   eventfollows.create!(event_id: event.id)
     end
 
     def eventunfollow!(event)

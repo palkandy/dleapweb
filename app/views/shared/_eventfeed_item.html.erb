@@ -4,6 +4,11 @@
       <%= link_to eventfeed_item.user.name, eventfeed_item.user %>
     </span>
     <span class="content"><%= eventfeed_item.details %></span>
+  
+    
+       <%= render 'shared/eventfollow_form',object:eventfeed_item if signed_in? %>
+       
+    
     <span class="timestamp">
       Posted <%= time_ago_in_words(eventfeed_item.created_at) %> ago.
     </span>

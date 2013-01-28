@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
 
    has_many :microposts
    has_many :eventfollows, foreign_key: "event_id", dependent: :destroy
-   has_many :followers, through: :eventfollows, source: :event
+   has_many :followers, through: :eventfollows, source: :follower
 
      acts_as_gmappable
 
