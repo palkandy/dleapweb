@@ -1,0 +1,8 @@
+<div id="eventfollow_form">
+  <% if current_user.eventfollowing?(object) %>
+    <%= render 'shared/eventunfollow',object:object %>
+  <% else %>
+    <%= render 'shared/eventfollow',object:object %>
+  <% end %>
+  </div>
+

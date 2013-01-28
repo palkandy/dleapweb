@@ -1,0 +1,6 @@
+<%= form_for(current_user.eventfollows.find_by_event_id(object.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+             <div><%= f.hidden_field :event_id %></div>
+  <%= f.submit "Unfollow Event", class: "btn btn-large" %>
+<% end %>

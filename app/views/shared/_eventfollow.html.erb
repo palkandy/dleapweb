@@ -1,0 +1,6 @@
+<%= form_for(current_user.eventfollows.build(event_id: object.id),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :event_id %></div>
+  <%= f.submit "Follow Event", class: "btn btn-large btn-primary" %>
+<% end %>
+
